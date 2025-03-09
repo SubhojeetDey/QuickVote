@@ -1,0 +1,2 @@
+# QuickVote
+Smart voting system
