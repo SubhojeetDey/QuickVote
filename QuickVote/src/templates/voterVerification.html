@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Enrollment</title>
+    <link rel="stylesheet" href="/static/staff.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            width: 80%;
+            margin-top: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            background: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: darkblue;
+        }
+        .message {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .bio-verify{
+            width: fit-content;
+            padding: 5px;
+            background-color: green;
+            color: #f4f4f4;
+            border: none;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function visible(){
+            btn = document.getElementById('voter-details')
+            btn.style.display = 'block'
+        }
+    </script>
+    <div class="container">
+        <h2>Enter Your Voter Enrollment Number</h2>
+        <form action="" method="post">{% csrf_token %}
+            <input type="text" id="enrollNumber" placeholder="Enter Aadhar Number" name="ver_id" required >
+            <button onclick="" type="submit" onclick="visible()">Submit</button>
+            <p class="message" id="message"></p>
+        </form>
+    </div>
+    {% if voter %}
+        <div class="voter-details" id="voter-details">
+            <h2>Voter Details</h2>
+            <div class="details-grid">
+                <div class="detail-item">
+                    <p class="detail-label">Name</p>
+                    <p class="detail-value">{{voter.first_name}} {{voter.last_name}}</p>
+                </div>
+                <div class="detail-item">
+                    <p class="detail-label">Aadhar no</p>
+                    <p class="detail-value">{{voter.Aadhar_no}}</p>
+                </div>
+                <div class="detail-item">
+                    <p class="detail-label">Voter ID</p>
+                    <p class="detail-value">{{voter.Voter_id}}</p>
+                </div>
+                <div class="detail-item">
+                    <p class="detail-label">Electoral No</p>
+                    <p class="detail-value">{{voter.Electoral_no}}</p>
+                </div>
+                <div class="detail-item">
+                    <p class="detail-label">Age</p>
+                    <p class="detail-value">{{voter.age}} years</p>
+                </div>
+                
+                <div class="detail-item full-width">
+                    <p class="detail-label">Address</p>
+                    <p class="detail-value">{{voter.address}}</p>
+                </div>
+                <div class="detail-item">
+                    <p class="detail-label">Status</p>
+                    <p class="detail-value status-verified">Verified</p>
+                </div>
+                <div class="detail-item">
+                    <p class="detail-label">Voting status</p>
+                    <p class="detail-value">{{voter.Voted}}</p>
+                </div>
+                <div>
+                    <a href="/biometrics?user={{voter.Aadhar_no}}"><button class="bio-verify">Proceed to biometric verification</button></a>
+                </div>
+            </div>
+        {% elif error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+    <script>
+        
+    </script>
+
+</body>
+</html>

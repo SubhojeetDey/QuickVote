@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Register Form</title>
+    <link rel="stylesheet" href="/static/register.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="wrapper">
+        <form action="" method="post">{% csrf_token %}
+           
+            <h2>Register</h2>
+            <div class="django-userform" style="display: grid;">
+                {{form}}
+            </div>
+            <!-- 
+            <div class="input-box">
+                <input type="text" placeholder="Aadhar Number" required>
+                <i class='bx bxs-fridge'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder="Email" required>
+                <i class='bx bxs-envelope' ></i>
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder="Username" required>
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Password" required>
+                <i class='bx bxs-lock' ></i>
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder="Confirm Password" required>
+                <i class='bx bxs-lock' ></i>
+            </div> -->
+            <button type="submit" class="register-btn">Register</button>
+        </form>
+</html>
